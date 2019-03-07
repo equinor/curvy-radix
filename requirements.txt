@@ -1,0 +1,5 @@
+flask
+numpy
+scipy
+#pandas
+#git+https://github.com/equinor/curvy.git@master
