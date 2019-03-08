@@ -17,6 +17,4 @@ spec:
           port: 80
       public: true
       monitoring: true
-  dnsAppAlias:
-    environment: prod
-    component: frontend
+
