@@ -2,10 +2,10 @@ FROM frolvlad/alpine-python-machinelearning
 
 LABEL description "Nginx + uWSGI + Flask based on Alpine Linux and managed by Supervisord"
 
-ENV HTTP_PROXY http://www-proxy.statoil.no:80
-ENV HTTPS_PROXY http://www-proxy.statoil.no:80
-RUN export http_proxy=http://www-proxy.statoil.no:80
-RUN export https_proxy=http://www-proxy.statoil.no:80
+#ENV HTTP_PROXY http://www-proxy.statoil.no:80
+#ENV HTTPS_PROXY http://www-proxy.statoil.no:80
+#RUN export http_proxy=http://www-proxy.statoil.no:80
+#RUN export https_proxy=http://www-proxy.statoil.no:80
 
 # Copy python requirements file
 COPY requirements.txt /tmp/requirements.txt

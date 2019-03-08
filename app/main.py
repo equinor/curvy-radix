@@ -4,18 +4,13 @@ from curvy import builder
 from flask import Flask, jsonify
 from flask import request
 
-
 app = Flask(__name__)
 
-#   start_date = datetime.datetime.now()
-# forward_prices = [3, 4, 6, 5, 7, 8, 6, 4, 5, 6]
-#   x, y, dr, pr, y_smfc = builder.build_smfc_curve(forward_prices, start_date)
-   # x, y, dr, pr, y_smfc = builder.build_smfc_curve(forward_prices, start_date)
-# forward_prices = [3, 4, 6, 5, 7, 8, 6, 4, 5, 6]
-
 @app.route("/curvy", methods = ['POST'] )
-def hello():
+def curvy_radix():
    start_date = datetime.datetime.now()
+
+   # d = datetime.datetime.strptime('2012-05-29T19:30:03.283Z', '%Y-%m-%dT%H:%M:%S.%fZ')
 
    input = request.get_json()
 
