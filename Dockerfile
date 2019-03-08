@@ -36,4 +36,6 @@ COPY supervisord.conf /etc/supervisord.conf
 COPY ./app /app
 WORKDIR /app
 
+EXPOSE 80
+
 CMD ["/usr/bin/supervisord"]

@@ -1,0 +1,22 @@
+apiVersion: radix.equinor.com/v1
+kind: RadixApplication
+metadata:
+  name: CurvyRadix
+spec:
+  environments:
+    - name: dev
+      build:
+        from: master
+    - name: prod
+  components:
+    - name: backend
+      src: .
+      replicas: 2
+      ports:
+        - name: http
+          port: 80
+      public: true
+      monitoring: true
+  dnsAppAlias:
+    environment: prod
+    component: frontend
