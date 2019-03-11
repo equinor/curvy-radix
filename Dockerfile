@@ -9,6 +9,7 @@ LABEL description "Nginx + uWSGI + Flask based on Alpine Linux and managed by Su
 
 # Copy python requirements file
 COPY requirements.txt /tmp/requirements.txt
+COPY requirements_curvy.txt /tmp/requirements_curvy.txt
 
 #     python3 \
 RUN apk add \
@@ -21,6 +22,7 @@ RUN apk add \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --upgrade pip setuptools && \
     pip3 install -r /tmp/requirements.txt && \
+    pip3 install --no-deps -r /tmp/requirements_curvy.txt && \
     rm /etc/nginx/conf.d/default.conf && \
     rm -r /root/.cache
 
