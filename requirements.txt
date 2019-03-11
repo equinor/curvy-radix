@@ -1,2 +1,2 @@
 flask
-git+https://github.com/runekva/curvy.git@master#egg=curvy
+-e git+https://github.com/runekva/curvy.git@master#egg=curvy
