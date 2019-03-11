@@ -1,5 +1,2 @@
 flask
-numpy
-scipy
-#pandas
-#git+https://github.com/equinor/curvy.git@master
+git+https://github.com/runekva/curvy.git@master#egg=curvy

@@ -8,16 +8,16 @@ app = Flask(__name__)
 
 @app.route("/curvy", methods = ['POST'] )
 def curvy_radix():
-   start_date = datetime.datetime.now()
-
-   # d = datetime.datetime.strptime('2012-05-29T19:30:03.283Z', '%Y-%m-%dT%H:%M:%S.%fZ')
 
    input = request.get_json()
 
+   start_date = datetime.datetime.strptime(input['baselineDate'], '%Y-%m-%dT%H:%M:%S.%fZ')
+   forward_curve = input['forwardCurve']
+
    forwards = []
-   for i in range(len(input)):
-      json_dict = input[i]
-      forwards.append(json_dict['price'])  
+   for i in range(len(forward_curve)):
+
+      forwards.append(forward_curve[i]['price'])  
 
    x, y, dr, pr, y_smfc = builder.build_smfc_curve(forwards, start_date)
 
