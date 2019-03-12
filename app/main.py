@@ -1,17 +1,17 @@
 import datetime
 import os
 from curvy import builder
-from flask import Flask, jsonify
+from flask import Flask, jsonify, abort
 from flask import request
 
 app = Flask(__name__)
 
 @app.route("/curvy", methods = ['POST'] )
 def main():
-
-   print(os.environ.get('SECURITY_KEY'))
-
    json_input = request.get_json()
+
+   if 'securityKey' not in json_input.keys() or json_input['securityKey'] != os.environ.get('SECURITY_KEY'):
+      return abort(403)
 
    start_date = datetime.datetime.strptime(json_input['baselineDate'], '%Y-%m-%dT%H:%M:%S.%fZ')
    forward_curve = json_input['forwardCurve']
