@@ -13,20 +13,22 @@ def main():
    if 'securityKey' not in json_input.keys() or json_input['securityKey'] != os.environ.get('SECURITY_KEY'):
       return abort(403)
 
-   start_date = datetime.datetime.strptime(json_input['baselineDate'], '%Y-%m-%dT%H:%M:%S.%fZ')
-   forward_curve = json_input['forwardCurve']
-
-   forwards = []
-   for i in range(len(forward_curve)):
-      forwards.append(forward_curve[i]['price'])  
-
-   x, _, _, _ , y_smfc = builder.build_smfc_curve(forwards, start_date)
+   baseline_day = datetime.datetime.strptime(json_input['baselineDay'], '%Y-%m-%dT%H:%M:%S.%fZ')
+   forward_curves = json_input['forwardCurves']
 
    ret = []
-   for i in range(len(y_smfc)):
-      ret.append({"day": x[i].strftime('%Y-%m-%dT%H:%M:%SZ'), "price": y_smfc[i]})
+   for forward_curve in forward_curves:
+      ret.append ( smooth_forward_curve(baseline_day, forward_curve) )
 
    return jsonify(ret)
+
+def smooth_forward_curve(baseline_day, forward_curve):
+   x, _, _, _ , y_smfc = builder.build_smfc_curve(forward_curve['curve'], baseline_day)
+   curve = []
+   market = forward_curve['market']
+   for i in range(len(y_smfc)):
+      curve.append({"day": x[i].strftime('%Y-%m-%dT%H:%M:%SZ'), "price": y_smfc[i]})
+   return { "market": market, "curve": curve}
 
 if __name__ == "__main__":
    app.run(host='0.0.0.0', debug=True)
