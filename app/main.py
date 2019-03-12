@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/curvy", methods = ['POST'] )
 def main():
 
-   print(os.environ.get('SECRET_KEY'))
+   print(os.environ.get('SECURITY_KEY'))
 
    json_input = request.get_json()
 
