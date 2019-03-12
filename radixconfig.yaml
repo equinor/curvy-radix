@@ -8,13 +8,16 @@ spec:
       build:
         from: master
     - name: prod
+      build:
+        from: release
   components:
     - name: backend
       src: .
       replicas: 2
+      secrets:
+        - SECURITY_KEY
       ports:
         - name: http
           port: 80
       public: true
       monitoring: true
-

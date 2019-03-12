@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/frolvlad/alpine-python-machinelearning/
 FROM frolvlad/alpine-python-machinelearning
 
 LABEL description "Nginx + uWSGI + Flask based on Alpine Linux and managed by Supervisord"
@@ -13,13 +14,11 @@ COPY requirements_curvy.txt /tmp/requirements_curvy.txt
 
 #     python3 \
 RUN apk add \
-    bash \
     nginx \
     uwsgi \
     uwsgi-python3 \
     git \
     supervisor && \
-    rm -r /usr/lib/python*/ensurepip && \
     pip3 install --upgrade pip setuptools && \
     pip3 install -r /tmp/requirements.txt && \
     pip3 install --no-deps -r /tmp/requirements_curvy.txt && \
@@ -41,4 +40,4 @@ WORKDIR /app
 
 EXPOSE 80
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord","-c","/etc/supervisord.conf"]
