@@ -3,8 +3,8 @@ FROM frolvlad/alpine-python-machinelearning
 
 LABEL description "Nginx + uWSGI + Flask based on Alpine Linux and managed by Supervisord"
 
-ARG HTTP_PROXY=http://www-proxy.statoil.no:80
-ARG HTTPS_PROXY=http://www-proxy.statoil.no:80
+#ARG HTTP_PROXY=http://www-proxy.statoil.no:80
+#ARG HTTPS_PROXY=http://www-proxy.statoil.no:80
 
 RUN apk add \
     nginx \
