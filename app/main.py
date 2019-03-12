@@ -1,4 +1,5 @@
 import datetime
+import os
 from curvy import builder
 from flask import Flask, jsonify
 from flask import request
@@ -7,6 +8,8 @@ app = Flask(__name__)
 
 @app.route("/curvy", methods = ['POST'] )
 def main():
+
+   print(os.environ.get('SECRET_KEY'))
 
    json_input = request.get_json()
 
