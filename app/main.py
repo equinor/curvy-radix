@@ -10,9 +10,6 @@ app = Flask(__name__)
 def main():
    json_input = request.get_json()
 
-   print('Input: ' + json_input['securityKey'])
-   print('Env: ' + os.environ.get('SECURITY_KEY'))
-
    if 'securityKey' not in json_input.keys() or json_input['securityKey'] != os.environ.get('SECURITY_KEY'):
       return abort(403)
 

@@ -3,16 +3,9 @@ FROM frolvlad/alpine-python-machinelearning
 
 LABEL description "Nginx + uWSGI + Flask based on Alpine Linux and managed by Supervisord"
 
-#ENV HTTP_PROXY http://www-proxy.statoil.no:80
-#ENV HTTPS_PROXY http://www-proxy.statoil.no:80
-#RUN export http_proxy=http://www-proxy.statoil.no:80
-#RUN export https_proxy=http://www-proxy.statoil.no:80
+ARG HTTP_PROXY=http://www-proxy.statoil.no:80
+ARG HTTPS_PROXY=http://www-proxy.statoil.no:80
 
-# Copy python requirements file
-COPY requirements.txt /tmp/requirements.txt
-COPY requirements_curvy.txt /tmp/requirements_curvy.txt
-
-#     python3 \
 RUN apk add \
     nginx \
     uwsgi \
@@ -20,8 +13,8 @@ RUN apk add \
     git \
     supervisor && \
     pip3 install --upgrade pip setuptools && \
-    pip3 install -r /tmp/requirements.txt && \
-    pip3 install --no-deps -r /tmp/requirements_curvy.txt && \
+    pip3 install flask && \
+    pip3 install git+https://github.com/equinor/curvy.git@master#egg=curvy && \
     rm /etc/nginx/conf.d/default.conf && \
     rm -r /root/.cache
 

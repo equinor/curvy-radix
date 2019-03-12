@@ -1,1 +1,0 @@
-git+https://github.com/runekva/curvy.git@master#egg=curvy
