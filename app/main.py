@@ -4,7 +4,6 @@ from curvy import builder
 from flask import Flask, jsonify, abort
 from flask import request
 
-
 app = Flask(__name__)
 
 @app.route("/curvy", methods = ['POST'] )
