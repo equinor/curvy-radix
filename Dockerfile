@@ -1,8 +1,9 @@
 # https://hub.docker.com/r/frolvlad/alpine-python-machinelearning/
 FROM frolvlad/alpine-python-machinelearning
 
-LABEL description "Nginx + uWSGI + Flask based on Alpine Linux and managed by Supervisord"
+LABEL description "Nginx(HTTP Server) + uWSGI + Flask based on Alpine Linux and managed by Supervisord"
 
+# Proxy configuration to be used when running locally. Must be commented out when deploying to Radix.
 #ARG HTTP_PROXY=http://www-proxy.statoil.no:80
 #ARG HTTPS_PROXY=http://www-proxy.statoil.no:80
 
