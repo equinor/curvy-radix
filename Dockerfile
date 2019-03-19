@@ -7,6 +7,7 @@ LABEL description "Nginx(HTTP Server) + uWSGI + Flask based on Alpine Linux and 
 #ARG HTTP_PROXY=http://www-proxy.statoil.no:80
 #ARG HTTPS_PROXY=http://www-proxy.statoil.no:80
 
+
 RUN apk add \
     nginx \
     uwsgi \
