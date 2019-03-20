@@ -19,6 +19,7 @@ RUN apk add \
     rm /etc/nginx/conf.d/default.conf && \
     rm -r /root/.cache
 
+
 # Copy the Nginx global conf
 COPY nginx.conf /etc/nginx/
 # Copy the Flask Nginx site conf
