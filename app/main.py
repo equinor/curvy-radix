@@ -13,8 +13,8 @@ def main():
    json_input = request.get_json()
 
    # securityKey in json must match SECURITY_KEY in environment (configured as secret in Omnia Radix)
-   #if 'securityKey' not in json_input.keys() or json_input['securityKey'] != os.environ.get('SECURITY_KEY'):
-   #   return abort(403)
+   if 'securityKey' not in json_input.keys() or json_input['securityKey'] != os.environ.get('SECURITY_KEY'):
+      return abort(403)
 
    baseline_day = datetime.datetime.strptime(json_input['baselineDay'], '%Y-%m-%dT%H:%M:%S.%fZ')
    forward_curves = json_input['forwardCurves']
