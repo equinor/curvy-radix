@@ -29,7 +29,7 @@ def smooth_forward_curve(baseline_day, forward_curve):
    # dr - Array of array, each array containing dates in period.
    # pr - Array of array, each array containing the forward price (same price) for each day of the period.
    # y_smfc - Array of array, each array containing the smoothed forward price for each day of the period.
-   _, _, dr, pr, y_smfc = builder.build_smfc_curve(forward_curve['curve'], baseline_day, False)
+   _, _, dr, pr, y_smfc = builder.build_smfc_curve(forward_curve['curve'], baseline_day, False, True)
    curve = []
    period_average = []
    market = forward_curve['market']

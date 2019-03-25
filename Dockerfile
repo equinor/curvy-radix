@@ -4,9 +4,8 @@ FROM frolvlad/alpine-python-machinelearning
 LABEL description "Nginx(HTTP Server) + uWSGI + Flask based on Alpine Linux and managed by Supervisord"
 
 # Proxy configuration to be used when running locally. Must be commented out when deploying to Radix.
-#ARG HTTP_PROXY=http://www-proxy.statoil.no:80
-#ARG HTTPS_PROXY=http://www-proxy.statoil.no:80
-
+# ARG HTTP_PROXY=http://www-proxy.statoil.no:80
+# ARG HTTPS_PROXY=http://www-proxy.statoil.no:80
 
 RUN apk add \
     nginx \
@@ -16,7 +15,7 @@ RUN apk add \
     supervisor && \
     pip3 install --upgrade pip setuptools && \
     pip3 install flask && \
-    pip3 install git+https://github.com/equinor/curvy.git@master#egg=curvy && \
+    pip3 install --no-cache-dir git+https://github.com/equinor/curvy.git@master#egg=curvy && \
     rm /etc/nginx/conf.d/default.conf && \
     rm -r /root/.cache
 
